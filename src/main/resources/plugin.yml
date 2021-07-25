@@ -1,0 +1,11 @@
+name: Invasion
+version: ${project.version}
+main: de.entjic.invasion.Invasion
+api-version: 1.15
+prefix: -- Invasion --
+commands:
+  pause:
+  start:
+  spawn:
+  reset:
+  game:
