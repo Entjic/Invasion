@@ -23,8 +23,8 @@ public class DestructivePathFinderGoal extends PathfinderGoal {
 
     @Override
     public boolean a() {
-        if (!creature.onGround){
-        //    System.out.println("false");
+        if (! creature.onGround) {
+            //    System.out.println("false");
             return false;
         }
         // System.out.println("true");
@@ -38,7 +38,7 @@ public class DestructivePathFinderGoal extends PathfinderGoal {
 
     @Override
     public void c() {
-       // System.out.println("Location " + creature.locX() + ", " + creature.locY() + ", " + creature.locZ() + " with target: " + target);
+        // System.out.println("Location " + creature.locX() + ", " + creature.locY() + ", " + creature.locZ() + " with target: " + target);
         this.creature.getNavigation().a(target.getX(), target.getY(), target.getZ(), 1f);
     }
 

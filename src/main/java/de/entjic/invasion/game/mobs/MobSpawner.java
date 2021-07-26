@@ -1,10 +1,8 @@
 package de.entjic.invasion.game.mobs;
 
 import de.entjic.invasion.game.SpawnAreaCalculator;
-import net.minecraft.server.v1_15_R1.WorldServer;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
-import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.entity.EntityType;
 
 public class MobSpawner {
     private final Location spawnArea, target;
@@ -23,8 +21,10 @@ public class MobSpawner {
     }
 
     private void spawn() {
-        CustomZombie customZombie = new CustomZombie(spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
+/*        CustomZombie customZombie = new CustomZombie(spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
         WorldServer world = ((CraftWorld) spawnArea.getWorld()).getHandle();
-        world.addEntity(customZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
+        world.addEntity(customZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);*/
+        new CustomMob(EntityType.ZOMBIE, spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
+        // TODO: 26.07.2021 mobs spawn on the corner, rather centered
     }
 }
