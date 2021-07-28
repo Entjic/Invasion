@@ -11,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumSet;
 
-public class DestructiveCreatureAI implements Goal<Mob> {
+public class LocationTargetedCreatureAI implements Goal<Mob> {
     private final Mob mob;
     private final Location target;
     private int tick;
 
-    public DestructiveCreatureAI(Mob mob, Location target) {
+    public LocationTargetedCreatureAI(Mob mob, Location target) {
         this.mob = mob;
         this.target = target;
         tick = 0;

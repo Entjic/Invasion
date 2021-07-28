@@ -26,7 +26,7 @@ public class Trigger implements GameObject {
     @Override
     public void update(int gameTick) {
         captured = captured >= 0 ? captured + gettingCaptured() * 0.01 : captured;
-
+        // FIXME: 28.07.2021 this just doesnt work
         if (captured >= 1) {
             game.pause();
             captured = 1;
@@ -45,6 +45,7 @@ public class Trigger implements GameObject {
     }
 
     private boolean isCapturing(Entity entity) {
+        // TODO: 28.07.2021 check if entity is one of CustomMob.class
         return entity.getLocation().distanceSquared(location) < 9; // FIXME: 25.07.2021 weird behavior doesnt work as intended
     }
 

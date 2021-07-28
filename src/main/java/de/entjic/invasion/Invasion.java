@@ -14,12 +14,12 @@ public final class Invasion extends JavaPlugin {
     public void onEnable() {
         game = new Game();
         registerCommands();
-
+        saveResource("waves.yml", false);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+
     }
 
     private void registerCommands() {

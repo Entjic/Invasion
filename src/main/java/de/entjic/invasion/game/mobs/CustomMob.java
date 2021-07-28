@@ -14,9 +14,11 @@ public class CustomMob {
     private final Entity entity;
     private final Mob mob;
     private final Location target;
+    private final EntityType type;
 
     public CustomMob(EntityType type, Location spawnLocation, Location target) {
         this.entity = spawnLocation.getWorld().spawnEntity(spawnLocation, type, CreatureSpawnEvent.SpawnReason.CUSTOM);
+        this.type = type;
         mob = (Mob) entity;
         this.target = target;
         addAI();
@@ -27,7 +29,7 @@ public class CustomMob {
         MobGoals mobGoals = Bukkit.getMobGoals();
         mobGoals.getAllGoals(mob).forEach(e -> System.out.println(e.getKey().getNamespacedKey()));
 
-        Goal<Mob> destructiveAI = new DestructiveCreatureAI(mob, target);
+        Goal<Mob> destructiveAI = new LocationTargetedCreatureAI(mob, target);
         mobGoals.addGoal(mob, 0, destructiveAI);
 
     }
@@ -41,8 +43,10 @@ public class CustomMob {
     private void setEquipment(Mob mob) {
         EntityEquipment equipment = mob.getEquipment();
         equipment.setHelmet(new ItemBuilder(Material.LEATHER_HELMET).setLeatherArmorColor(Color.fromRGB(255, 0, 0)).toItemStack());
-
     }
 
+    public EntityType getType() {
+        return type;
+    }
 
 }

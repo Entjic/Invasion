@@ -14,17 +14,8 @@ public class MobSpawner {
         this.spawnAreaCalculator = new SpawnAreaCalculator();
     }
 
-    public void spawn(int amount) {
-        for (int i = 0; i < amount; i++) {
-            spawn();
-        }
+    public CustomMob spawn(EntityType type) {
+        return new CustomMob(type, spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
     }
 
-    private void spawn() {
-/*        CustomZombie customZombie = new CustomZombie(spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
-        WorldServer world = ((CraftWorld) spawnArea.getWorld()).getHandle();
-        world.addEntity(customZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);*/
-        new CustomMob(EntityType.ZOMBIE, spawnAreaCalculator.calcSpawnLocation(3, spawnArea), target);
-        // TODO: 26.07.2021 mobs spawn on the corner, rather centered
-    }
 }
