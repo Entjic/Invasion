@@ -2,9 +2,9 @@ package de.entjic.invasion.game.mob;
 
 import com.destroystokyo.paper.entity.ai.Goal;
 import com.destroystokyo.paper.entity.ai.MobGoals;
-import de.entjic.invasion.game.mob.ai.AttackNearPlayerCreatureAI;
 import de.entjic.invasion.game.mob.ai.BlockBreakCreatureAI;
 import de.entjic.invasion.game.mob.ai.LocationTargetedCreatureAI;
+import de.entjic.invasion.game.mob.ai.MeleeAttackNearPlayerCreatureAI;
 import de.entjic.invasion.util.ItemBuilder;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
@@ -29,11 +29,11 @@ public class CustomMob {
 
     private void addAI() {
         MobGoals mobGoals = Bukkit.getMobGoals();
-        Goal<Mob> digAI = new BlockBreakCreatureAI(mob, target.getBlock());
+        Goal<Mob> digAI = new BlockBreakCreatureAI(mob);
         mobGoals.addGoal(mob, 2, digAI);
         Goal<Mob> targetedCreatureAI = new LocationTargetedCreatureAI(mob, target);
         mobGoals.addGoal(mob, 1, targetedCreatureAI);
-        Goal<Mob> attackAI = new AttackNearPlayerCreatureAI(mob);
+        Goal<Mob> attackAI = new MeleeAttackNearPlayerCreatureAI(mob);
         mobGoals.addGoal(mob, 0, attackAI);
     }
 

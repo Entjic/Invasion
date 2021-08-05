@@ -4,6 +4,7 @@ import com.destroystokyo.paper.entity.ai.Goal;
 import com.destroystokyo.paper.entity.ai.GoalKey;
 import com.destroystokyo.paper.entity.ai.GoalType;
 import de.entjic.invasion.Invasion;
+import de.entjic.invasion.util.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -16,12 +17,10 @@ import java.util.EnumSet;
 
 public class BlockBreakCreatureAI implements Goal<Mob> {
     private final Mob mob;
-    private final Block triggerBlock;
     private int tick;
 
-    public BlockBreakCreatureAI(Mob mob, Block triggerBlock) {
+    public BlockBreakCreatureAI(Mob mob) {
         this.mob = mob;
-        this.triggerBlock = triggerBlock;
         tick = 0;
     }
 
@@ -37,7 +36,6 @@ public class BlockBreakCreatureAI implements Goal<Mob> {
 
     @Override
     public void start() {
-
     }
 
     @Override
@@ -56,7 +54,7 @@ public class BlockBreakCreatureAI implements Goal<Mob> {
     @Override
     public @NotNull
     GoalKey<Mob> getKey() {
-        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "BlockBreakCreaturesAI"));
+        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "BlockBreakCreatureAI"));
     }
 
     @Override
@@ -72,6 +70,7 @@ public class BlockBreakCreatureAI implements Goal<Mob> {
         }
         if (diggable(frontBlock)) {
             frontBlock.getWorld().playSound(frontBlock.getLocation(), Sound.BLOCK_STONE_HIT, 2.0F, 1.0F);
+            frontBlock.breakNaturally(new ItemBuilder(Material.STONE_PICKAXE).toItemStack(), true);
             return true;
         }
         return false;
@@ -98,7 +97,7 @@ public class BlockBreakCreatureAI implements Goal<Mob> {
 
     private boolean diggable(Block block) {
         Material material = block.getType();
-        return ! material.equals(Material.AIR) && ! material.equals(Material.WATER) && ! material.equals(Material.LAVA) && ! block.equals(triggerBlock);
+        return ! material.equals(Material.AIR) && ! material.equals(Material.WATER) && ! material.equals(Material.LAVA);
     }
 
 }

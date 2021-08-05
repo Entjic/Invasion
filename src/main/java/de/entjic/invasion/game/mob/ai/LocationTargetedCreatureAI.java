@@ -54,7 +54,7 @@ public class LocationTargetedCreatureAI implements Goal<Mob> {
     @Override
     public @NotNull
     GoalKey<Mob> getKey() {
-        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "DestructiveCreatureAI"));
+        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "LocationTargetedCreatureAI"));
     }
 
     @Override

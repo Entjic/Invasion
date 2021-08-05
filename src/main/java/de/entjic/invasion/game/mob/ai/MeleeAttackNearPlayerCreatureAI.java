@@ -12,11 +12,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.EnumSet;
 
-public class AttackNearPlayerCreatureAI implements Goal<Mob> {
+public class MeleeAttackNearPlayerCreatureAI implements Goal<Mob> {
     private final Mob mob;
     private int tick;
 
-    public AttackNearPlayerCreatureAI(Mob mob) {
+    public MeleeAttackNearPlayerCreatureAI(Mob mob) {
         this.mob = mob;
     }
 
@@ -47,7 +47,7 @@ public class AttackNearPlayerCreatureAI implements Goal<Mob> {
     @Override
     public @NotNull
     GoalKey<Mob> getKey() {
-        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "AttackPlayersAI"));
+        return GoalKey.of(Mob.class, new NamespacedKey(Invasion.getProvidingPlugin(Invasion.class), "MeleeAttackPlayerCreatureAI"));
     }
 
     @Override
