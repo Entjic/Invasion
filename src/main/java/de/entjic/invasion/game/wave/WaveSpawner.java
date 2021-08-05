@@ -2,6 +2,7 @@ package de.entjic.invasion.game.wave;
 
 import de.entjic.invasion.files.FileContainer;
 import de.entjic.invasion.game.GameObject;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -13,21 +14,28 @@ public class WaveSpawner implements GameObject {
 
     private final Location target;
     private Wave current;
+    private final int waveduration;
+    private int waveNr;
 
     public WaveSpawner(Location target) {
         this.target = target;
+        waveduration = FileContainer.getInstance().getFile("config").getInt("waveduration");
     }
 
 
     @Override
     public void update(int gameTick) {
-        if (gameTick % 20 == 0) {
-            spawnWave(gameTick / 20);
+        if (gameTick % waveduration == 0) {
+            this.waveNr = gameTick / waveduration;
+            spawnWave(gameTick / waveduration);
         }
     }
 
     @Override
     public void render(int gameTick) {
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            player.sendMessage("Wave nr " + waveNr + " spawned");
+        });
     }
 
     private void spawnWave(int wave) {
@@ -48,9 +56,22 @@ public class WaveSpawner implements GameObject {
 
     private void createAndAddHashes(List<EntityTypeAmountHash> list, ConfigurationSection configuration) {
         for (String key : configuration.getKeys(false)) {
-            EntityTypeAmountHash hash = new EntityTypeAmountHash(EntityType.valueOf(key), configuration.getInt(key));
+            System.out.println(key);
+            EntityType type = getEntityTypeByString(key);
+            System.out.println(type.toString());
+            System.out.println(key);
+            EntityTypeAmountHash hash = new EntityTypeAmountHash(type, configuration.getInt(key));
             list.add(hash);
         }
+    }
+
+    private EntityType getEntityTypeByString(String string) {
+        for (EntityType entityType : EntityType.values()) {
+            if (entityType.name().equalsIgnoreCase(string)) {
+                return entityType;
+            }
+        }
+        return null;
     }
 
 

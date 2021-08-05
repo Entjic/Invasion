@@ -1,5 +1,6 @@
 package de.entjic.invasion.game.wave;
 
+import de.entjic.invasion.files.FileContainer;
 import de.entjic.invasion.game.SpawnAreaCalculator;
 import de.entjic.invasion.game.mobs.CustomMob;
 import de.entjic.invasion.game.mobs.MobSpawner;
@@ -23,7 +24,8 @@ public class Wave {
 
     public void spawn() {
         final SpawnAreaCalculator calculator = new SpawnAreaCalculator();
-        final MobSpawner spawner = new MobSpawner(calculator.calcSpawnLocation(30, target, 10),
+        final MobSpawner spawner = new MobSpawner(calculator.calcSpawnLocation(
+                FileContainer.getInstance().getFile("config").getInt("wavereange"), target, 10),
                 target);
         for (EntityTypeAmountHash hash : entityAmount) {
             int amount = hash.amount;

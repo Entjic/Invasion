@@ -5,6 +5,8 @@ import de.entjic.invasion.game.timer.Timer;
 import de.entjic.invasion.game.wave.WaveSpawner;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 public class Game {
     private GameState gameState;
@@ -47,6 +49,7 @@ public class Game {
     private void init() {
         waveSpawner = new WaveSpawner(trigger.getLocation());
         gameTimer = new Timer();
+        initWorld();
     }
 
     private void createTickMachine() {
@@ -55,7 +58,6 @@ public class Game {
             int gameTick = gameTimer.getTime();
             update(gameTick);
             render(gameTick);
-
         }, 0L, 20L);
     }
 
@@ -68,5 +70,7 @@ public class Game {
         trigger.render(gameTick);
     }
 
-
+    private void initWorld() {
+        Bukkit.getWorld("world").getEntities().stream().filter(e -> ! e.getType().equals(EntityType.PLAYER)).forEach(Entity::remove);
+    }
 }

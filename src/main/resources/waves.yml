@@ -1,2 +1,11 @@
 1:
   zombie: 5
+2:
+  zombie: 3
+  skeleton: 2
+3:
+  creeper: 1
+4:
+  pillager: 3
+5:
+  ravager: 2

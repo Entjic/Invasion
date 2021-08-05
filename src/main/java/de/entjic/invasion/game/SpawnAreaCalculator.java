@@ -10,18 +10,14 @@ public class SpawnAreaCalculator {
         int x = calcNearRandom(target.getBlockX(), range);
         int z = calcNearRandom(target.getBlockZ(), range);
         int y = target.getWorld().getHighestBlockYAt(x, z);
-        Location location = new Location(target.getWorld(), x, y + 1, z);
-        // System.out.println(location.toString());
-        return location;
+        return new Location(target.getWorld(), x, y + 1, z);
     }
 
     public Location calcSpawnLocation(int range, Location target, int min) {
         int x = calcNearRandom(target.getBlockX(), range, min);
         int z = calcNearRandom(target.getBlockZ(), range, min);
         int y = target.getWorld().getHighestBlockYAt(x, z);
-        Location location = new Location(target.getWorld(), x, y + 1, z);
-        // System.out.println(location.toString());
-        return location;
+        return new Location(target.getWorld(), x, y + 1, z);
     }
 
     private int calcNearRandom(int i, int range, int min) {

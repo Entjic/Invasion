@@ -4,14 +4,17 @@ import net.minecraft.server.v1_15_R1.IChatBaseComponent;
 import net.minecraft.server.v1_15_R1.PacketPlayOutChat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 public class Trigger implements GameObject {
     private final Location location;
     private final Game game;
-    private double captured;
+    private int captured;
+    private boolean capturing;
 
     public Trigger(Location location, Game game) {
         this.location = location;
@@ -25,35 +28,53 @@ public class Trigger implements GameObject {
 
     @Override
     public void update(int gameTick) {
-        captured = captured >= 0 ? captured + gettingCaptured() * 0.01 : captured;
-        // FIXME: 28.07.2021 this just doesnt work
-        if (captured >= 1) {
+        captured += calcCaptured();
+        if (captured >= 100) {
             game.pause();
-            captured = 1;
+            captured = 100;
+
         }
 
     }
 
-    private int gettingCaptured() {
-        int i = 0;
+    private int calcCaptured() {
+        int capturingEntities = getCapturingEntities();
+        if (capturingEntities > 0) {
+            capturing = true;
+            return capturingEntities;
+        }
+        capturing = false;
+        if (captured > 0) {
+            return - 1;
+        }
+        return 0;
+    }
+
+    private int getCapturingEntities() {
+        int capturingEntities = 0;
         for (Entity entity : location.getWorld().getEntities()) {
             if (isCapturing(entity)) {
-                i++;
+                capturingEntities++;
             }
         }
-        return i == 0 && captured != 0 ? - 1 : i;
+        return capturingEntities;
     }
 
+
     private boolean isCapturing(Entity entity) {
-        // TODO: 28.07.2021 check if entity is one of CustomMob.class
-        return entity.getLocation().distanceSquared(location) < 9; // FIXME: 25.07.2021 weird behavior doesnt work as intended
+        if (entity.getType().equals(EntityType.PLAYER)) {
+            return false;
+        }
+        return entity.getLocation().distanceSquared(location) < 9;
     }
 
     @Override
     public void render(int gameTick) {
         Bukkit.getOnlinePlayers().forEach(player -> {
-            sendActionBar(player, "§5Captured: " + (int) Math.floor(captured * 100) + "%");
-            // TODO: 25.07.2021 add sound
+            sendActionBar(player, "§5Captured: " + captured + "%");
+            if (capturing) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1f, 2);
+            }
         });
     }
 

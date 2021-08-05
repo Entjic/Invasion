@@ -45,7 +45,7 @@ public class LocationTargetedCreatureAI implements Goal<Mob> {
     @Override
     public void tick() {
         tick++;
-        if (tick > 20 || (mob.getPathfinder().getCurrentPath() == null && ! mob.getLocation().getBlock().equals(target.getBlock()))) {
+        if (tick > 60 || (mob.getPathfinder().getCurrentPath() == null && ! mob.getLocation().getBlock().equals(target.getBlock()))) {
             start();
             tick = 0;
         }
