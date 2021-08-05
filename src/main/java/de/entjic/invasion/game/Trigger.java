@@ -1,14 +1,10 @@
 package de.entjic.invasion.game;
 
-import net.minecraft.server.v1_15_R1.IChatBaseComponent;
-import net.minecraft.server.v1_15_R1.PacketPlayOutChat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 
 public class Trigger implements GameObject {
     private final Location location;
@@ -71,19 +67,11 @@ public class Trigger implements GameObject {
     @Override
     public void render(int gameTick) {
         Bukkit.getOnlinePlayers().forEach(player -> {
-            sendActionBar(player, "§5Captured: " + captured + "%");
+            player.sendActionBar("§5Captured: " + captured + "%");
             if (capturing) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1f, 2);
             }
         });
-    }
-
-
-    private void sendActionBar(Player player, String message) {
-        PacketPlayOutChat packet = new PacketPlayOutChat(IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}"),
-                net.minecraft.server.v1_15_R1.ChatMessageType.a((byte) 2));
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-
     }
 
 }
