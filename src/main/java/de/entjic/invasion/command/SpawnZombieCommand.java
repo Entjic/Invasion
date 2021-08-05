@@ -1,4 +1,4 @@
-package de.entjic.invasion.commands;
+package de.entjic.invasion.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

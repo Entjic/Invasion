@@ -1,4 +1,4 @@
-package de.entjic.invasion.commands;
+package de.entjic.invasion.command;
 
 import de.entjic.invasion.game.Game;
 import de.entjic.invasion.game.GameState;

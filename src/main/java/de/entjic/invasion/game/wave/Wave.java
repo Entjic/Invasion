@@ -1,9 +1,9 @@
 package de.entjic.invasion.game.wave;
 
-import de.entjic.invasion.files.FileContainer;
-import de.entjic.invasion.game.SpawnAreaCalculator;
-import de.entjic.invasion.game.mobs.CustomMob;
-import de.entjic.invasion.game.mobs.MobSpawner;
+import de.entjic.invasion.file.ConfigContainer;
+import de.entjic.invasion.game.mob.CustomMob;
+import de.entjic.invasion.game.mob.MobSpawner;
+import de.entjic.invasion.util.SpawnAreaCalculator;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -25,7 +25,7 @@ public class Wave {
     public void spawn() {
         final SpawnAreaCalculator calculator = new SpawnAreaCalculator();
         final MobSpawner spawner = new MobSpawner(calculator.calcSpawnLocation(
-                FileContainer.getInstance().getFile("config").getInt("wavereange"), target, 10),
+                ConfigContainer.getInstance().getFile("config").getInt("wavereange"), target, 10),
                 target);
         for (EntityTypeAmountHash hash : entityAmount) {
             int amount = hash.amount;

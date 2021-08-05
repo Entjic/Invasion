@@ -1,12 +1,12 @@
-package de.entjic.invasion.commands;
+package de.entjic.invasion.command;
 
 import de.entjic.invasion.game.Game;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.jetbrains.annotations.NotNull;
 
 public class ResetCommand implements CommandExecutor {
@@ -24,8 +24,8 @@ public class ResetCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         for (Entity entity : player.getWorld().getEntities()) {
-            if (entity instanceof Zombie) {
-                entity.remove(); // TODO: 25.07.2021 only instances of CustomZombie need to be cleared
+            if (! entity.getType().equals(EntityType.PLAYER)) {
+                entity.remove();
             }
         }
         game.reset();

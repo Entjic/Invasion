@@ -1,7 +1,7 @@
-package de.entjic.invasion.game.mobs;
+package de.entjic.invasion.game.mob;
 
-import de.entjic.invasion.files.FileContainer;
-import de.entjic.invasion.game.SpawnAreaCalculator;
+import de.entjic.invasion.file.ConfigContainer;
+import de.entjic.invasion.util.SpawnAreaCalculator;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -17,7 +17,7 @@ public class MobSpawner {
 
     public CustomMob spawn(EntityType type) {
         return new CustomMob(type, spawnAreaCalculator.calcSpawnLocation(
-                FileContainer.getInstance().getFile("config").getInt("mobrange"), spawnArea), target);
+                ConfigContainer.getInstance().getFile("config").getInt("mobrange"), spawnArea), target);
     }
 
 }

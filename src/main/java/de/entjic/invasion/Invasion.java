@@ -1,6 +1,6 @@
 package de.entjic.invasion;
 
-import de.entjic.invasion.commands.*;
+import de.entjic.invasion.command.*;
 import de.entjic.invasion.game.Game;
 import de.entjic.invasion.listener.CancelDeathItemDropListener;
 import de.entjic.invasion.listener.CancelNaturalSpawningListener;

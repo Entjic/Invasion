@@ -1,16 +1,16 @@
-package de.entjic.invasion.files;
+package de.entjic.invasion.file;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.IOException;
 
-public class File {
+public class Config {
 
     private final java.io.File file;
     private FileConfiguration config;
 
-    public File(java.io.File file, FileConfiguration config) {
+    public Config(java.io.File file, FileConfiguration config) {
         this.file = file;
         this.config = config;
     }

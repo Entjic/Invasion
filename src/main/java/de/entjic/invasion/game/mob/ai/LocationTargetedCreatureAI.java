@@ -1,4 +1,4 @@
-package de.entjic.invasion.game.mobs;
+package de.entjic.invasion.game.mob.ai;
 
 import com.destroystokyo.paper.entity.ai.Goal;
 import com.destroystokyo.paper.entity.ai.GoalKey;

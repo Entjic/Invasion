@@ -1,6 +1,6 @@
 package de.entjic.invasion.game.wave;
 
-import de.entjic.invasion.files.FileContainer;
+import de.entjic.invasion.file.ConfigContainer;
 import de.entjic.invasion.game.GameObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,7 +19,7 @@ public class WaveSpawner implements GameObject {
 
     public WaveSpawner(Location target) {
         this.target = target;
-        waveduration = FileContainer.getInstance().getFile("config").getInt("waveduration");
+        waveduration = ConfigContainer.getInstance().getFile("config").getInt("waveduration");
     }
 
 
@@ -46,7 +46,7 @@ public class WaveSpawner implements GameObject {
 
     private List<EntityTypeAmountHash> readWaveConfiguration(int wave) {
         List<EntityTypeAmountHash> list = new ArrayList<>();
-        ConfigurationSection configuration = FileContainer.getInstance().getFile("waves")
+        ConfigurationSection configuration = ConfigContainer.getInstance().getFile("waves")
                 .getFileConfiguration().getConfigurationSection(String.valueOf(wave));
         if (configuration != null) {
             createAndAddHashes(list, configuration);

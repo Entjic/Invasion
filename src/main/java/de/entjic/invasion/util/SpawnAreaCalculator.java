@@ -1,4 +1,4 @@
-package de.entjic.invasion.game;
+package de.entjic.invasion.util;
 
 import org.bukkit.Location;
 
