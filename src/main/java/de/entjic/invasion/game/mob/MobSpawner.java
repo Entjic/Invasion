@@ -1,6 +1,6 @@
 package de.entjic.invasion.game.mob;
 
-import de.entjic.invasion.file.ConfigContainer;
+import de.entjic.invasion.config.ConfigContainer;
 import de.entjic.invasion.util.SpawnAreaCalculator;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;

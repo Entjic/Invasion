@@ -1,6 +1,6 @@
 package de.entjic.invasion.game.wave;
 
-import de.entjic.invasion.file.ConfigContainer;
+import de.entjic.invasion.config.ConfigContainer;
 import de.entjic.invasion.game.GameObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -56,10 +56,7 @@ public class WaveSpawner implements GameObject {
 
     private void createAndAddHashes(List<EntityTypeAmountHash> list, ConfigurationSection configuration) {
         for (String key : configuration.getKeys(false)) {
-            System.out.println(key);
             EntityType type = getEntityTypeByString(key);
-            System.out.println(type.toString());
-            System.out.println(key);
             EntityTypeAmountHash hash = new EntityTypeAmountHash(type, configuration.getInt(key));
             list.add(hash);
         }

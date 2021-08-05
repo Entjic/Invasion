@@ -1,4 +1,4 @@
-package de.entjic.invasion.file;
+package de.entjic.invasion.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

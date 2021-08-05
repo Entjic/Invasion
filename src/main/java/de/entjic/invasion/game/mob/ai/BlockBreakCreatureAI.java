@@ -4,7 +4,6 @@ import com.destroystokyo.paper.entity.ai.Goal;
 import com.destroystokyo.paper.entity.ai.GoalKey;
 import com.destroystokyo.paper.entity.ai.GoalType;
 import de.entjic.invasion.Invasion;
-import de.entjic.invasion.util.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -73,7 +72,6 @@ public class BlockBreakCreatureAI implements Goal<Mob> {
         }
         if (diggable(frontBlock)) {
             frontBlock.getWorld().playSound(frontBlock.getLocation(), Sound.BLOCK_STONE_HIT, 2.0F, 1.0F);
-            System.out.println(frontBlock.breakNaturally(new ItemBuilder(Material.STONE_PICKAXE).toItemStack(), true));
             return true;
         }
         return false;

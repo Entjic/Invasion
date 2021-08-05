@@ -1,6 +1,6 @@
 package de.entjic.invasion.game.wave;
 
-import de.entjic.invasion.file.ConfigContainer;
+import de.entjic.invasion.config.ConfigContainer;
 import de.entjic.invasion.game.mob.CustomMob;
 import de.entjic.invasion.game.mob.MobSpawner;
 import de.entjic.invasion.util.SpawnAreaCalculator;
